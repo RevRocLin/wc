@@ -16,15 +16,10 @@ public class fileFilter implements FileFilter{
 
     @Override
     public boolean accept(File pathname) {
-        if(pathname.isDirectory()){
-            return false;
-        }else{
             String name=pathname.getName();
             if(name.endsWith(".txt")||name.endsWith(".java")||name.endsWith(".c")||name.endsWith(".cpp")||pathname.isDirectory()){
                 return true;
-            }
-        }
-        return false;
+            }else{return false;}
     }
     
 }

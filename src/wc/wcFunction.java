@@ -24,7 +24,9 @@ public class wcFunction {
         if(file.exists()){
         BufferedReader br=new BufferedReader(new FileReader(file));
         while ((line = br.readLine()) != null){           
-        
+        Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(line);
+            line = m.replaceAll("");
          count += line.length();//按行统计字符
         }
         }
@@ -80,7 +82,7 @@ public class wcFunction {
         File file=new File(fileName);
         if(file.exists()){
             BufferedReader br=new BufferedReader(new FileReader(file));
-            Pattern null_Pattern=Pattern.compile("^\\s*$");// 构造空行的模式匹配（既行的开头和结尾间只有空白字符\s)
+            Pattern null_Pattern=Pattern.compile("(^\\s*$)|(^\\S$)");// 构造空行的模式匹配（既行的开头和结尾间只有空白字符\s)
             Pattern comment=Pattern.compile("((//)|(/\\*+)|((^\\s)*\\*)|((^\\s)*\\*+/))+",Pattern.MULTILINE + Pattern.DOTALL);//注释
             while((str=br.readLine())!=null){
                 line++;        
@@ -117,7 +119,7 @@ public class wcFunction {
                        int num3=getLineNumber(path);
                        int[] num4=extra_Function1(path);
                        System.out.println(path);
-                       System.out.println("字符数："+num1+"\n单词数："+num2+"\n行数："+num3+"空行："+num4[0]+" "+"代码行："+num4[1]+" "+"注释行："+num4[2]);
+                       System.out.println("字符数："+num1+"\n单词数："+num2+"\n行数："+num3+"\n空行："+num4[0]+" "+"代码行："+num4[1]+" "+"注释行："+num4[2]);
                     }
                 }
         }
